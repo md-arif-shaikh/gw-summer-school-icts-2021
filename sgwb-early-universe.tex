@@ -1,0 +1,78 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{cancel}
+
+\begin{document}
+\title{Solutions to SGWB Early Universe problem set}
+\author{Md Arif Shaikh}
+\date{\today}
+\maketitle
+
+\begin{enumerate}
+    \item \underline{Derivation of linearized Ricci tensor around a Minkowski background}\\\\
+    The space-time metric $g_{\mu\nu}$ could be written in terms of small perturbation $h_{\mu\nu}$ around the Minkowski spacetime $\eta_{\mu\nu}$ in the following way,
+    \begin{equation}
+        \label{eq:metric-perturbation}
+        g_{\alpha\beta} = \eta_{\alpha\beta} + h_{\alpha\beta},\qquad |h_{\alpha\beta}|\ll 1
+    \end{equation}
+    using this we can expand the Christoffel symbols. Christoffel symbols in terms of $g_{\mu\nu}$ is given by
+    \begin{equation}
+        \label{eq:Christofell-symbols}
+        \Gamma^{\gamma}_{\alpha\beta} = \frac{1}{2}g^{\gamma\delta}(\partial_\alpha g_{\beta\delta} + \partial_\beta g_{\alpha\delta} - \partial_\delta g_{\alpha\beta}).
+    \end{equation}
+    From eq. (\ref{eq:metric-perturbation}), one can get $g^{\alpha\beta} = \eta^{\alpha\beta} - h^{\alpha\beta}$. Since derivative of $\eta_{\mu\nu}$ is zero, only terms inside the parenthesis that would contribute are the derivatives of $h_{\alpha\beta}$. Also, since we want terms up to $\mathcal{O}(h)$, only term that would contribute from $g^{\alpha\beta}$ would be $\eta^{\alpha\beta}$. Therefore the linearized $\Gamma$ could be written as
+    \begin{equation}
+        \label{eq:linearized-Gamma}
+        \Gamma^{\gamma}_{\alpha\beta} = \frac{1}{2}\eta^{\gamma\delta}(\partial_\alpha h_{\beta\delta} + \partial_\beta h_{\alpha\delta} - \partial_\delta h_{\alpha\beta})
+    \end{equation}
+    Now we proceed to compute the linearized Riemann tensor. The general expression of Riemann tensor in terms of the Christoffel symbols is given by
+    \begin{equation}
+        \label{eq:Riemman-tensor}
+        R_{\alpha\beta\gamma}^{~~~~\delta} = -\partial_\alpha\Gamma^{\delta}_{\beta\gamma} + \partial_\beta\Gamma^{\delta}_{\alpha\gamma} - \Gamma^{\delta}_{\alpha\mu}\Gamma^{\mu}_{\beta\gamma} + \Gamma^{\delta}_{\beta\mu}\Gamma^{\mu}_{\alpha\gamma}.
+    \end{equation}
+    From eq. (\ref{eq:linearized-Gamma}), we see that the $\Gamma$ are of $\mathcal{O}(h)$ and therefore the $\Gamma\Gamma$ terms are of $\mathcal{O}(h^2)$ and hence can be neglected. So we are left with the first derivative of $\Gamma$ terms. We get $\partial_\beta \Gamma^{\delta}_{\alpha\gamma}$ and then exchange $\alpha$ and $\beta$ to get $\partial_\alpha\Gamma^{\delta}_{\beta\gamma}$.
+    
+    \begin{align}
+        \partial_\beta \Gamma^{\delta}_{\alpha\gamma} = \frac{1}{2}\eta^{\delta\lambda} (\cancel{\partial_{\alpha} \partial_{\beta} h_{\lambda\gamma}} + \partial_\beta\partial_\gamma h_{\alpha\lambda} - \partial_\beta \partial_\lambda h_{\alpha\gamma}) \\
+        - \partial_\alpha \Gamma^{\delta}_{\beta\gamma} = \frac{1}{2}\eta^{\delta\lambda} (- \cancel{\partial_{\beta} \partial_{\alpha} h_{\lambda\gamma}} - \partial_\alpha\partial_\gamma h_{\beta\lambda} + \partial_\alpha \partial_\lambda h_{\beta\gamma})\\
+        \hline \nonumber \\
+        R_{\alpha\beta\gamma}^{~~~~\delta} = \partial_\beta \Gamma^{\delta}_{\alpha\gamma} - \partial_\alpha \Gamma^{\delta}_{\beta\gamma} = \frac{1}{2}\eta^{\delta\lambda}(\partial_\beta \partial_\gamma h_{\alpha\lambda} - \partial_\beta\partial_\lambda h_{\alpha\gamma} - \partial_\alpha\partial_\gamma h_{\beta\lambda} + \partial_\alpha\partial_\lambda h_{\beta\gamma})
+    \end{align}
+    This provides the linearized Riemann tensor as
+    \begin{equation}
+        \label{eq:linearized-Riemann-tensor}
+        \boxed{R_{\alpha\beta\gamma\delta} = \frac{1}{2}(\partial_\beta\partial_\gamma h_{\alpha\delta} - \partial_\beta \partial_\delta h_{\alpha\gamma} - \partial_\alpha\partial_\gamma h_{\beta\delta} + \partial_\alpha\partial_\delta h_{\beta\gamma})}\qquad \textrm{({\bfseries Proved})}
+    \end{equation}
+    
+    \item \underline{Derivation of linearized equation of motion (Linearized Einstein equation)}\\\\
+    We have the linearized Riemann tensor in eq. (\ref{eq:linearized-Riemann-tensor}). All we need now is to compute the linearized Ricci tensor and the Ricci scalar and get the linearized Einstein tensor using that.
+    
+    To get the Ricci tensor we contract the first index with third index, i. e., $g^{\alpha\gamma}R_{\alpha\beta\gamma\delta} = \eta^{\alpha\gamma}R_{\alpha\beta\gamma\delta} = R_{\beta\delta}$ since Riemann tensor is already of $\mathcal{O}(h)$, to get
+    \begin{equation}
+        \label{eq:Ricci-tensor}
+        R_{\alpha\beta} = \frac{1}{2}(-\partial_\mu \partial^\mu h_{\alpha\beta} + \partial_\alpha\partial^\mu h_{\mu\beta} + \partial_\beta\partial^\mu h_{\mu\alpha} - \partial_\alpha \partial_\beta h)
+    \end{equation}
+    where $h$ is the trace of $h_{\alpha\beta}$, i. e., $h = h^\alpha_\alpha$.
+    
+    Next we get the Ricci scalar by contracting the indices of $R_{\alpha\beta}$, i. e., $R = g^{\alpha\beta}R_{\alpha\beta} = \eta^{\alpha\beta} R_{\alpha\beta}$.
+    \begin{equation}
+        \label{eq:Ricci-scalar}
+        R = \frac{1}{2}(-\partial_\mu\partial^\mu h + \partial_\alpha \partial^\mu h_{\mu}^{\alpha} + \partial_\beta \partial^{\mu} h_{\mu}^{\beta} - \partial_\alpha\partial^\alpha h) = -\eta^{\alpha\beta}\partial_{\alpha}\partial_\beta h + \partial_\alpha\partial_\beta h^{\alpha\beta}.
+    \end{equation}
+    where we have changed the dummy indices as per our choice.
+    
+    Now that we have the Ricci tensor and Ricci scalar we need to insert these in the Einstein tensor
+    \begin{equation}
+        \label{eq:Einstein-tensor}
+        G_{\alpha\beta} = R_{\alpha\beta} - \frac{1}{2}g_{\alpha\beta}R = R_{\alpha\beta} - \frac{1}{2}\eta_{\alpha\beta}R.
+    \end{equation}
+    We get the following after substituting eq. (\ref{eq:Ricci-tensor}) and eq. (\ref{eq:Ricci-scalar}) in eq. (\ref{eq:Einstein-tensor}) above,
+    
+    \begin{equation}
+        \label{eq:linearized-Einstein-tensor-in-h}
+        G_{\alpha\beta} = \frac{1}{2}(-\eta^{\mu\nu}\partial_\mu\partial_\nu h_{\alpha\beta} + \partial_\alpha\partial^\mu h_{\mu\beta} + \partial_\beta\partial^\mu h_{\mu\alpha} - \partial_\alpha \partial_\beta h) - \frac{1}{2}\eta_{\alpha\beta}(-\eta^{\mu\nu}\partial_\mu\partial_\nu h + \partial_\mu\partial_\nu h^{\mu\nu})
+    \end{equation}
+    
+\end{enumerate}
+\end{document}
